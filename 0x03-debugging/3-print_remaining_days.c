@@ -1,36 +1,67 @@
-#include <stdio.h>
 #include "main.h"
 
 /**
- * print_remaining_days - takes a date and prints how many days are
- * left in the year, taking leap years into account
- * @month: month in number format
- * @day: day of month
- * @year: year
- * Return: void
+ * largest_number - returns the largest of 3 numbers
+ * @num1: first integer
+ * @num2: second integer
+ * @num3: third integer
+ * Return: largest number
  */
 
-void print_remaining_days(int month, int day, int year)
+int largest_number(int num1, int num2, int num3);
+
+/**
+ * largest_number - return max
+ * @num1: the first number
+ * @num2: the second number
+ * @num3: the third number
+ * Return: the largest number
+ */
+
+int largest_number(int num1, int num2, int num3)
 {
- if ((year % 100 == 0 && year % 400 == 0) || (year % 4 == 0))
- {
- if (month > 2 && day >= 60)
- {
- day++;
- }
- printf("Day of the year: %d\n", day);
- printf("Remaining days: %d\n", 366 - day);
- }
- else
- {
- if (month == 2 && day == 60)
- {
- printf("Invalid date: %02d/%02d/%04d\n", month, day - 31, year);
- }
- else
- {
- printf("Day of the year: %d\n", day);
- printf("Remaining days: %d\n", 365 - day);
- }
- }
+	int largest;
+
+	if (num1 > num2 && num1 > num3)
+	{
+		largest = num1;
+	}
+	else if (num2 > num1 && num2 > num3)
+	{
+		largest = num2;
+	}
+	else if (num3 > num1 && num3 > num2)
+	{
+		largest = num3;
+	}
+	else if (num1 == num2 && num1 > num3)
+	{
+		largest = num1;
+	}
+	else if (num1 == num3 && num1 > num2)
+	{
+		largest = num1;
+	}
+	else if (num2 == num3 && num2 > num1)
+	{
+		largest = num2;
+	}
+	else if (num2 == num1 && num2 > num3)
+	{
+		largest = num2;
+	}
+	else if (num3 == num1 && num3 > num2)
+	{
+		largest = num3;
+	}
+	else if (num3 == num2 && num3 > num1)
+	{
+		largest = num3;
+	}
+	else
+	{
+		largest = num1 = num2 = num3;
+	}
+
+	return (largest);
 }
