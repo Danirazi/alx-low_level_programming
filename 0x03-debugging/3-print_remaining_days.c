@@ -1,67 +1,50 @@
+#include <stdio.h>
 #include "main.h"
 
 /**
- * largest_number - returns the largest of 3 numbers
- * @num1: first integer
- * @num2: second integer
- * @num3: third integer
- * Return: largest number
+ * print_remaining_days - takes a date and prints how many days are
+ * left in the year, taking leap years into account
+ * @month: month in number format
+ * @day: day of month
+ * @year: year
+ * Return: void
  */
 
-int largest_number(int num1, int num2, int num3);
+void print_remaining_days(int month, int day, int year);
 
 /**
- * largest_number - return max
- * @num1: the first number
- * @num2: the second number
- * @num3: the third number
- * Return: the largest number
+ * print_remaining_days - prints the remaining days
+ * @month: the current month
+ * @day: the current day
+ * @year: the current year
+ * Return: void
  */
 
-int largest_number(int num1, int num2, int num3)
+void print_remaining_days(int month, int day, int year)
 {
-	int largest;
+	if ((year % 4 == 0) || (year % 100 == 0 && year % 400 == 0))
+	{
+		int leap_days = 366;
 
-	if (num1 > num2 && num1 > num3)
-	{
-		largest = num1;
-	}
-	else if (num2 > num1 && num2 > num3)
-	{
-		largest = num2;
-	}
-	else if (num3 > num1 && num3 > num2)
-	{
-		largest = num3;
-	}
-	else if (num1 == num2 && num1 > num3)
-	{
-		largest = num1;
-	}
-	else if (num1 == num3 && num1 > num2)
-	{
-		largest = num1;
-	}
-	else if (num2 == num3 && num2 > num1)
-	{
-		largest = num2;
-	}
-	else if (num2 == num1 && num2 > num3)
-	{
-		largest = num2;
-	}
-	else if (num3 == num1 && num3 > num2)
-	{
-		largest = num3;
-	}
-	else if (num3 == num2 && num3 > num1)
-	{
-		largest = num3;
+		if (day >= 60 && month > 2)
+		{
+			day++;
+		}
+		printf("Day of the year: %d\n", day);
+		printf("Remaining days: %d\n", leap_days - day);
 	}
 	else
 	{
-		largest = num1 = num2 = num3;
-	}
+		if (day == 60 && month == 2)
+		{
+			printf("Invalid date: %02d/%02d/%04d\n", month, day - 31, year);
+		}
+		else
+		{
+			int standard_days = 365;
 
-	return (largest);
+			printf("Day of the year: %d\n", day);
+			printf("Remaining days: %d\n", standard_days - day);
+		}
+	}
 }
